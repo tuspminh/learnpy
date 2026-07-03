@@ -1,6 +1,6 @@
-Lộ trình tổng quan
+#Lộ trình tổng quan
 
-Giai đoạn 1 — Nền tảng cốt lõi
+##Giai đoạn 1 — Nền tảng cốt lõi
 
 Python là gì, cài đặt môi trường, chạy chương trình đầu tiên
 
@@ -22,7 +22,7 @@ Hàm (Function)
 
 Xử lý lỗi (Exception handling)
 
-Giai đoạn 2 — Trung cấp
+##Giai đoạn 2 — Trung cấp
 
 11. Làm việc với File
 12. Module & Package
@@ -32,7 +32,7 @@ Giai đoạn 2 — Trung cấp
 16. Comprehension nâng cao & lập trình hàm (functional)
 17. Thư viện chuẩn hữu ích (datetime, os, re, json...)
 
-Giai đoạn 3 — Nâng cao & thực chiến
+##Giai đoạn 3 — Nâng cao & thực chiến
 
 18. Quản lý môi trường ảo, pip, dependency
 19. Làm việc với API (requests, HTTP)
