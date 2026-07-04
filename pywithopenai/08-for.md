@@ -92,34 +92,34 @@ for number in [10, 20, 30]:
     print(number)
 ```
 Kết quả
-
+```
 10
 20
 30
-
+```
 ⸻
 
 4. range()
 
 Đây là thứ được dùng nhiều nhất.
-
+```
 range(start, stop, step)
-
+```
 ⸻
 
 Chỉ có stop
-
+```
 for i in range(5):
     print(i)
-
+```
 Kết quả
-
+```
 0
 1
 2
 3
 4
-
+```
 Lưu ý
 
 Không có số 5.
@@ -127,7 +127,7 @@ Không có số 5.
 ⸻
 
 Có start
-
+```
 for i in range(1, 6):
     print(i)
 1
@@ -135,7 +135,7 @@ for i in range(1, 6):
 3
 4
 5
-
+```
 ⸻
 
 Có step
