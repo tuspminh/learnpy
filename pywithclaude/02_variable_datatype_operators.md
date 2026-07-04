@@ -1,5 +1,7 @@
 [01_hello_py](01_hello_py.md)    [03_string](03_string.md)
+
 ---
+
 ### Bài 2: Biến, Kiểu dữ liệu và Toán tử
 
 
