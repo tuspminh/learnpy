@@ -15,9 +15,9 @@ Sau buổi học này, bạn sẽ:
 * Biết cách viết vòng lặp theo phong cách Pythonic.
 * Áp dụng vào các bài toán thực tế.
 
-⸻
+---
 
-1. for là gì?
+# 1. for là gì?
 
 Rất nhiều người mới học nghĩ rằng:
 
@@ -30,21 +30,21 @@ Bản chất của for trong Python là:
 Lặp qua từng phần tử của một đối tượng có thể lặp (Iterable).
 
 Ví dụ:
-
+'''
 for item in iterable:
     ...
-
+'''
 Không phải:
-
+'''
 for(i=0;i<n;i++)
-
+'''
 như trong C hoặc Java.
 
 Đây là một điểm khác biệt rất lớn của Python.
 
-⸻
+---
 
-2. Iterable là gì?
+# 2. Iterable là gì?
 
 Một Iterable là đối tượng có thể được duyệt từng phần tử.
 
@@ -53,7 +53,7 @@ Ví dụ:
 text = "Python"
 
 Python sẽ lấy lần lượt:
-
+'''
 P
 ↓
 y
@@ -65,7 +65,7 @@ h
 o
 ↓
 n
-
+'''
 ⸻
 
 Ví dụ với list:
