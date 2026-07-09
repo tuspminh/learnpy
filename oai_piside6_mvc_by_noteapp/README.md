@@ -1,0 +1,1 @@
+bạn là một lập trình viên python, hãy dạy tôi từng bước về cấu trúc và xây dựng một dự án pyside6 theo mô hình mvc nho nhỏ, lấy ứng dụng ghi chú làm ví dụ, app có left side hiện và tạo các ghi chú, right side đọc và viết ghi chú (text). dữ liệu ghi chú được lưu trong database sqlite3
