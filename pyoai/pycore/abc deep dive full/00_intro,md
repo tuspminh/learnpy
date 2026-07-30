@@ -1,0 +1,326 @@
+Version:0.9 StartHTML:00000097 EndHTML:00018866 StartFragment:00000131 EndFragment:00018830 
+
+Rất tốt. Đây là một trong những chủ đề mà rất nhiều lập trình viên Python bỏ qua nhưng lại xuất hiện rất nhiều trong các framework lớn như **Django, FastAPI, SQLAlchemy, Scrapy, asyncio, logging, pathlib, requests, Pydantic...**
+
+# Khóa học ABC (Abstract Base Class) Deep Dive
+
+Mục tiêu khóa học không chỉ là biết dùng `ABC`, mà còn hiểu:
+
+  * Tại sao Python sinh ra ABC. 
+  * ABC hoạt động bên trong như thế nào. 
+  * Khi nào nên dùng ABC, Protocol, Duck Typing. 
+  * Thiết kế framework/plugin bằng ABC. 
+  * Viết code như thư viện chuẩn Python. 
+
+
+
+* * *
+
+# Lộ trình
+
+## Phần I - Foundation
+
+### Buổi 1
+
+> Từ Duck Typing đến ABC
+
+  * Python là ngôn ngữ Duck Typing 
+  * Interface là gì? 
+  * Vì sao Python không có interface? 
+  * Những vấn đề của Duck Typing 
+  * Sự ra đời của abc module 
+
+
+
+* * *
+
+### Buổi 2
+
+Module `abc`
+
+  * ABCMeta 
+  * ABC 
+  * abstractmethod 
+  * abstractproperty 
+  * abstractclassmethod 
+  * abstractstaticmethod 
+
+
+
+* * *
+
+### Buổi 3
+
+Cách Python kiểm tra abstract class
+
+  * metaclass 
+  * **new**
+  * **call**
+  * **instancecheck**
+  * **subclasscheck**
+
+
+
+* * *
+
+# Phần II - Advanced ABC
+
+### Buổi 4
+
+Virtual Subclass
+    
+    
+    register()
+
+Không cần kế thừa vẫn được xem là subclass.
+
+* * *
+
+### Buổi 5
+
+Custom subclass checking
+    
+    
+    __subclasshook__()
+
+Đây là bí mật của rất nhiều thư viện.
+
+* * *
+
+### Buổi 6
+
+Mix Abstract + Concrete
+
+Template Method Pattern
+
+* * *
+
+### Buổi 7
+
+Abstract Property
+
+Getter
+
+Setter
+
+Readonly
+
+Validation
+
+* * *
+
+### Buổi 8
+
+Abstract Generic
+
+ABC + typing.Generic
+
+* * *
+
+### Buổi 9
+
+Multiple Inheritance
+
+ABC trong Diamond Inheritance
+
+MRO
+
+* * *
+
+### Buổi 10
+
+Metaclass Deep Dive
+
+ABCMeta
+
+type
+
+Custom metaclass
+
+* * *
+
+# Phần III - Design Pattern
+
+### Buổi 11
+
+Factory Pattern
+
+* * *
+
+### Buổi 12
+
+Strategy Pattern
+
+* * *
+
+### Buổi 13
+
+Template Pattern
+
+* * *
+
+### Buổi 14
+
+Adapter Pattern
+
+* * *
+
+### Buổi 15
+
+Plugin Architecture
+
+Ví dụ:
+    
+    
+    Crawler Plugin
+    
+    TruyenFull
+    
+    TangThuVien
+    
+    Wattpad
+    
+    WebNovel
+
+Chính là dự án bạn đang xây dựng.
+
+* * *
+
+# Phần IV - Python Internals
+
+### Buổi 16
+
+collections.abc
+
+Sequence
+
+Mapping
+
+Iterable
+
+Iterator
+
+Collection
+
+* * *
+
+### Buổi 17
+
+numbers module
+    
+    
+    Number
+    
+    Real
+    
+    Integral
+    
+    Complex
+
+* * *
+
+### Buổi 18
+
+IO Base
+    
+    
+    IOBase
+    
+    RawIOBase
+    
+    BufferedIOBase
+    
+    TextIOBase
+
+* * *
+
+### Buổi 19
+
+Async ABC
+    
+    
+    Awaitable
+    
+    Coroutine
+    
+    AsyncIterator
+    
+    AsyncIterable
+
+* * *
+
+### Buổi 20
+
+Context Manager ABC
+    
+    
+    ContextManager
+    
+    AsyncContextManager
+
+* * *
+
+# Phần V - Framework Level
+
+### Buổi 21
+
+Thiết kế ORM bằng ABC
+
+* * *
+
+### Buổi 22
+
+Thiết kế HTTP Client
+
+* * *
+
+### Buổi 23
+
+Thiết kế Storage Engine
+
+* * *
+
+### Buổi 24
+
+Thiết kế Cache System
+
+* * *
+
+### Buổi 25
+
+Thiết kế Message Queue
+
+* * *
+
+### Buổi 26
+
+Thiết kế Plugin Framework hoàn chỉnh
+
+Áp dụng vào dự án crawler truyện của bạn.
+
+* * *
+
+# Phần VI - Expert
+
+### Buổi 27
+
+ABC vs Protocol
+
+* * *
+
+### Buổi 28
+
+ABC vs Duck Typing
+
+* * *
+
+### Buổi 29
+
+ABC vs Dataclass
+
+* * *
+
+### Buổi 30
+
+Xây dựng mini framework bằng ABC
+
