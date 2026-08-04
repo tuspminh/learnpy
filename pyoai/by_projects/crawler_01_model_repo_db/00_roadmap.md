@@ -1,3 +1,6 @@
+> bạn là lập trình viên python chuyên nghiệp, dạy tôi từng bước xây dựng model, model-repostory, database manager cho ứng dụng cào truyện và đọc truyện, tôi muốn có một database quản lý chung, và mỗi nguồn truyện một database riêng, dùng sqlite3 thuần sql. dạng framework để có thể test mỗi công đoạn bằng cli
+
+
 Đây là một dự án rất hay vì nó gần với cách các framework crawler thực tế hoạt động. Nếu thiết kế tốt ngay từ đầu thì sau này bạn chỉ cần thêm plugin là có thể cào được hàng chục website khác nhau.
 
 Tôi sẽ dạy theo hướng **xây dựng framework**, không phải chỉ viết một ứng dụng.
