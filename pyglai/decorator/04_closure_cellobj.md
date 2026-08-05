@@ -13,7 +13,7 @@ Khi Python biên dịch code và phát hiện một hàm con tham chiếu đến
 ## 2. Cách kiểm tra các biến Closure trong bộ nhớ
 Python cung cấp hai thuộc tính ẩn (dunder attributes) là __closure__ và co_freevars để bạn kiểm tra xem hàm đang giữ những biến nào từ phạm vi Enclosing.
 Hãy chạy thử đoạn code dưới đây:
-
+```
 def ham_cha():
     ten = "Python"  # Biến thuộc Enclosing scope
     tuoi = 35
@@ -30,7 +30,7 @@ print(my_closure.__closure__)  # Kết quả: (<cell at 0x...: str object at 0x.
 # 3. Xem giá trị thực sự bên trong từng Cell
 print(my_closure.__closure__[0].cell_contents)  # Kết quả: Python
 print(my_closure.__closure__[1].cell_contents)  # Kết quả: 35
-
+```
 ## Tóm lại
 
 * Biến Enclosing trong closure không bị giải phóng mà được chuyển vào một Cell Object.
@@ -42,3 +42,4 @@ Nếu bạn đã nắm chắc phần này, chúng ta có thể bước sang ph�
 * Tìm hiểu về Decorator (Cơ chế dùng closure để chỉnh sửa/nâng cấp tính năng của một hàm khác mà không cần sửa code của hàm đó).
 
 Bạn đã sẵn sàng chuyển sang học Decorator chưa?
+

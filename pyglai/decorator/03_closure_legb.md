@@ -19,7 +19,7 @@ Khi bạn gọi một biến, Python sẽ tìm kiếm theo đúng thứ tự 4 p
 * Built-in (B): Các từ khóa/hàm mặc định của Python (Ví dụ: print, len, int).
 
 ## Ví dụ minh họa LEGB:
-
+```
 x = "Global X"  # [G] Global
 def ham_cha():
     x = "Enclosing X"  # [E] Enclosing
@@ -32,11 +32,11 @@ def ham_cha():
     ham_con()
 
 ham_cha()
-
+```
 ------------------------------
 ## 2. Ứng dụng Closure thực tế: Bảo mật mật khẩu
 Closure thường được dùng để che giấu dữ liệu (Encapsulation), không cho code bên ngoài can thiệp hoặc chỉnh sửa biến gốc một cách trái phép.
-
+```
 def khoi_tao_tai_khoan(mat_khau_goc):
     # Biến 'mat_khau_goc' nằm ở phạm vi Enclosing
     so_lan_nhap_sai = 0 
@@ -55,12 +55,16 @@ def khoi_tao_tai_khoan(mat_khau_goc):
             return f"Sai mật khẩu! (Sai {so_lan_nhap_sai}/3 lần)"
             
     return xac_thuc  # Trả về hàm con (Tạo thành Closure)
-# ---- Cách sử dụng ----# Tạo một tài khoản mới với mật khẩu là "Admin123"dang_nhap = khoi_tao_tai_khoan("Admin123")
+
+# ---- Cách sử dụng ----
+# Tạo một tài khoản mới với mật khẩu là "Admin123"
+dang_nhap = khoi_tao_tai_khoan("Admin123")
+
 # Biến 'mat_khau_goc' hiện tại hoàn toàn bị ẩn, không thể truy cập từ bên ngoài.# Bạn chỉ có thể tương tác thông qua hàm closure 'dang_nhap':
 print(dang_nhap("1111"))     # Kết quả: Sai mật khẩu! (Sai 1/3 lần)
 print(dang_nhap("2222"))     # Kết quả: Sai mật khẩu! (Sai 2/3 lần)
 print(dang_nhap("Admin123")) # Kết quả: Đăng nhập thành công!
-
+```
 ------------------------------
 Nếu bạn muốn tiếp tục nâng cao tay nghề, tôi có thể hướng dẫn:
 
@@ -68,3 +72,4 @@ Nếu bạn muốn tiếp tục nâng cao tay nghề, tôi có thể hướng d�
 * Cách kiểm tra các biến đang nằm trong Closure bằng thuộc tính ẩn __closure__.
 
 Bạn muốn chuyển sang học Decorator hay xem cách Python lưu biến closure trong bộ nhớ?
+

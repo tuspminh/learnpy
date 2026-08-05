@@ -23,3 +23,8 @@ Nếu bạn muốn, tôi có thể giải thích chi tiết hơn về:
 * Sự khác biệt giữa Enclosing scope và Closure.
 
 Hãy cho tôi biết bạn muốn tìm hiểu phần nào tiếp theo!
+
+[1] [https://realpython.com](https://translate.google.com/translate?u=https://realpython.com/python-scope-legb-rule/&hl=vi&sl=en&tl=vi&client=sge)
+[2] [https://www.laptrinhdientu.com](https://www.laptrinhdientu.com/2025/10/python-inner-function-closure.html)
+[3] [https://viblo.asia](https://viblo.asia/p/scope-legb-closure-vi-sao-ham-nho-sai-gia-tri-37LdeGrMVov)
+[4] [https://pythongis.org](https://translate.google.com/translate?u=https://pythongis.org/back-matter/nb/glossary.html&hl=vi&sl=en&tl=vi&client=sge)

@@ -38,3 +38,4 @@ Nếu bạn muốn tiếp tục, tôi có thể:
 * Giải thích toàn bộ quy tắc LEGB để bạn nắm rõ bức tranh tổng thể về biến trong Python.
 
 Bạn muốn đi sâu vào ví dụ thực tế của Closure hay học về quy tắc LEGB?
+
