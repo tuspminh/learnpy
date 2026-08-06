@@ -224,11 +224,22 @@ Finished...
 main.rs
 
 ```rust
+// ver:origin
+use rand::RngExt;
+
+fn main() {
+    let mut rng = rand::rng();
+
+    let n = rng.random_range(1..=100);
+
+    println!("{n}");
+}
+
 // Alternative 1: Direct function call (No imports needed besides Cargo.toml)
-//fn main() {
-//    let n = rand::random_range(1..=100);
-//    println!("{n}");
-//}
+fn main() {
+    let n = rand::random_range(1..=100);
+    println!("{n}");
+}
 
 // Alternative 2: Using the prelude
 use rand::prelude::*;
@@ -237,14 +248,8 @@ fn main() {
     let mut rng = rand::rng();
     let n = rng.random_range(1..=100);
     println!("{n}");
-	show_rand();
 }
 
-fn show_rand() {
-	// khong can use rand::
-	let n = rand::random_range(1..=100);
-	println!("{n}");
-}
 ```
 
 Chạy
@@ -591,18 +596,12 @@ rand = "0.9"
 main.rs
 
 ```rust
-use rand::Rng;
+use rand::RngExt;
 
 fn main() {
     println!("==== Greeting App ====");
 
-    let names = [
-        "Alice",
-        "Bob",
-        "Charlie",
-        "David",
-        "Emma",
-    ];
+    let names = ["Alice", "Bob", "Charlie", "David", "Emma"];
 
     let mut rng = rand::rng();
 
