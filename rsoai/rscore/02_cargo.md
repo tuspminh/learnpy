@@ -224,14 +224,26 @@ Finished...
 main.rs
 
 ```rust
-use rand::Rng;
+// Alternative 1: Direct function call (No imports needed besides Cargo.toml)
+//fn main() {
+//    let n = rand::random_range(1..=100);
+//    println!("{n}");
+//}
+
+// Alternative 2: Using the prelude
+use rand::prelude::*;
 
 fn main() {
     let mut rng = rand::rng();
-
     let n = rng.random_range(1..=100);
-
     println!("{n}");
+	show_rand();
+}
+
+fn show_rand() {
+	// khong can use rand::
+	let n = rand::random_range(1..=100);
+	println!("{n}");
 }
 ```
 
