@@ -18,7 +18,7 @@ fn main() {
     // Kết quả: deep-dive-ve-string-va-literal-string-trong-rust
 }
 
-------------------------------
+---------------------------- --
 ## Cách 2: Tự viết hàm xử lý (Không dùng thư viện ngoài)
 Nếu bạn không muốn thêm dependency, bạn có thể tự viết một hàm chuyển đổi. Hàm này sẽ thay thế thủ công các chữ cái tiếng Việt có dấu, chuyển thành chữ thường, loại bỏ ký tự đặc biệt và thay khoảng trắng thành dấu -.
 
@@ -69,9 +69,10 @@ fn main() {
     // Kết quả: hoc-rust-rat-hay-dung-khong
 }
 
-Hãy cho tôi biết:
+Hãy cho tôi biết: 
 
 * Bạn muốn sử dụng thư viện ngoài cho nhanh gọn hay bắt buộc phải tự viết hàm thuần để giảm dung lượng file nhị phân?
 * Bạn có cần xử lý các trường hợp đặc biệt như giữ lại dấu chấm tròn của phiên bản (ví dụ: rust-1.75) không?
 
 
+ 
