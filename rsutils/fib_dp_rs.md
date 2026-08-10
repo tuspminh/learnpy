@@ -44,7 +44,7 @@ fn main() {
     println!("Thời gian thực thi của Rust: {:?}", duration);
 }
 
-------------------------------
+---------------------------- --
 ## 2. Điểm vượt trội của Rust trong bài toán này
 
 * Tốc độ siêu việt: Thời gian thực thi cho hàm trên trong Rust thường chỉ mất khoảng vài chục đến vài trăm nano giây (1 nano giây = 1/1.000.000.000 giây), nhanh hơn Python hàng trăm lần.

@@ -40,7 +40,7 @@ def fib_bottom_up(n):
     return prev1
 # Cách này tính số Fibonacci thứ 1000 chỉ trong một cái chớp mắt!
 
-------------------------------
+---------------------------- --
 ## 3. So sánh hiệu năng thực tế
 Bảng dưới đây so sánh thời gian thực thi và độ phức tạp khi tính toán:
 

@@ -19,7 +19,7 @@ Không phải bài toán nào cũng giải được bằng quy hoạch động. 
 * Các bài toán con trùng lặp (Overlapping Subproblems): Khi chia nhỏ bài toán, cùng một bài toán con sẽ xuất hiện và phải tính toán nhiều lần.
 * Ví dụ: Khi tính số Fibonacci thứ 5 (F₅ = F₄ + F₃), ta cần tính F₄ = F₃ + F₂. Bạn có thể thấy bài toán con F₃ bị lặp lại ở cả hai nhánh.
 
-------------------------------
+----------------------------- -
 ## 3. Hai cách tiếp cận chính trong Quy hoạch động
 Khi lập trình, có hai cách để triển khai một bài toán quy hoạch động:
 ## Thừa lên (Bottom-Up) – Hay còn gọi là Tabulation (Lập bảng)
