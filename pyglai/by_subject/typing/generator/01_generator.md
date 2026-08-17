@@ -31,11 +31,15 @@ def tao_generator(n: int) -> Generator[int, None, None]:
 ```
 
 (Lưu ý về Type Hinting: Từ Python 3.9+, bạn nên import Generator từ thư viện collections.abc thay vì từ typing).
+
 ------------------------------
+
 ## 2. Cách lấy dữ liệu từ Generator
+
 Vì Generator không lưu dữ liệu sẵn, bạn có thể lấy dữ liệu ra bằng 2 cách sau:
 
 ### Cách 1: Dùng vòng lặp for (Phổ biến nhất)
+
 Vòng lặp for sẽ tự động kích hoạt Generator chạy từ đầu đến cuối cho đến khi hết dữ liệu.
 ```
 g = tao_generator(3)
@@ -49,6 +53,7 @@ for so in g:
 ```
 
 ### Cách 2: Dùng hàm next() để lấy từng phần tử thủ công
+
 Mỗi lần gọi next(), hàm sẽ chạy tiếp cho đến khi gặp từ khóa yield tiếp theo. Nếu hết dữ liệu, nó sẽ báo lỗi StopIteration.
 
 ```
@@ -61,7 +66,9 @@ print(next(g)) # Kết quả: 2
 ```
 
 ------------------------------
+
 ## 3. Sức mạnh thực sự của Generator: Tiết kiệm bộ nhớ (RAM)
+
 Hãy tưởng tượng bạn cần xử lý một danh sách gồm 10 triệu số nguyên.
 
 ```
@@ -78,7 +85,9 @@ print(f"Kích thước của Generator trong RAM: {sys.getsizeof(gen_lon)} bytes
 ```
 
 👉 Giải thích: Dù danh sách có tăng lên 1 tỷ phần tử, Generator vẫn chỉ tốn 112 bytes RAM vì nó không chứa bất kỳ con số nào cả, nó chỉ chứa "công thức" để tạo ra con số tiếp theo khi bạn gọi nó.
+
 ------------------------------
+
 ## 4. Khi nào bạn NÊN và KHÔNG NÊN dùng Generator?
 
 ### Nên dùng khi:
@@ -93,5 +102,6 @@ print(f"Kích thước của Generator trong RAM: {sys.getsizeof(gen_lon)} bytes
 * Bạn cần sử dụng lại dữ liệu nhiều lần. Generator sau khi chạy qua một phần tử là phần tử đó sẽ "biến mất", bạn không thể quay lại phần tử trước đó và nếu muốn chạy lại vòng lặp for lần 2, bạn phải tạo lại Generator mới từ đầu.
 
 ------------------------------
+
 Bạn có muốn xem một ví dụ thực tế về cách ứng dụng Generator để đọc một file log khổng lồ (dung lượng vài GB) mà không làm sập RAM của máy tính không?
 
