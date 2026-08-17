@@ -15,7 +15,8 @@ from typing import Final
 # 1. Khai báo một danh sách hằng số
 CAU_HINH_HE_THONG: Final[list[str]] = ["localhost", "db_prod"]
 
-# ❌ LỖI GÁN LẠI (IDE/Mypy sẽ báo lỗi đỏ ngay lập tức)CAU_HINH_HE_THONG = ["127.0.0.1", "db_dev"] 
+# ❌ LỖI GÁN LẠI (IDE/Mypy sẽ báo lỗi đỏ ngay lập tức)
+CAU_HINH_HE_THONG = ["127.0.0.1", "db_dev"] 
 
 # ⚠️ HÀNH VI MẶC ĐỊNH: Thêm phần tử thì Python vẫn cho phép chạy
 CAU_HINH_HE_THONG.append("redis_cache") 
@@ -33,7 +34,8 @@ Vì tuple là kiểu dữ liệu không thể chỉnh sửa (immutable), kết h
 from typing import Final
 
 
-# Một danh sách mã lỗi cố định không thể sửa đổiMA_LOI_DON_HANG: Final[tuple[int, ...]] = (404, 500, 403)
+# Một danh sách mã lỗi cố định không thể sửa đổi
+MA_LOI_DON_HANG: Final[tuple[int, ...]] = (404, 500, 403)
 
 # ❌ IDE và Python đều sẽ báo lỗi nếu bạn cố tình sửa:
 # MA_LOI_DON_HANG = (200,) --> Lỗi gán lại (do Final)
