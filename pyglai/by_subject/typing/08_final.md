@@ -1,7 +1,11 @@
 Trong Python, Final là một công cụ gợi ý kiểu dữ liệu dùng để khai báo một hằng số. Khi bạn đánh dấu một biến hoặc một danh sách là Final, bạn đang báo cho công cụ kiểm tra kiểu dữ liệu (như Mypy hoặc IDE) biết rằng: giá trị này không được phép thay đổi hoặc gán lại trong suốt quá trình chương trình chạy.
+
 Vì Final kiểm soát tính chất không thay đổi của biến, bạn vẫn cần import Final từ thư viện typing trên mọi phiên bản Python.
+
 ## Lưu ý quan trọng khi dùng Final với Danh sách (List)
+
 Trong Python, danh sách (list) là một kiểu dữ liệu có thể thay đổi (mutable). Khi bạn dùng Final với list, nó sẽ ngăn bạn gán lại một danh sách mới cho biến đó, nhưng mặc định không ngăn được việc bạn chỉnh sửa các phần tử bên trong (như append hoặc pop).
+
 Hãy xem ví dụ dưới đây để hiểu rõ cơ chế này:
 
 ```
@@ -15,8 +19,11 @@ CAU_HINH_HE_THONG.append("redis_cache")
 ```
 
 ## Giải pháp tối ưu: Hằng số danh sách thực sự
+
 Nếu bạn muốn tạo một danh sách hằng số hoàn toàn đóng băng (không cho gán lại và cũng không cho thêm/bớt phần tử), bạn nên kết hợp Final với kiểu tuple hoặc dùng Sequence.
+
 ## Cách 1: Kết hợp Final với tuple (Khuyên dùng cho danh sách hằng số)
+
 Vì tuple là kiểu dữ liệu không thể chỉnh sửa (immutable), kết hợp với Final sẽ tạo ra một hằng số tuyệt đối.
 
 ```
