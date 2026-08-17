@@ -1,5 +1,7 @@
 Dưới đây là một bài toán rất kinh điển trong thực tế: Máy tính của bạn chỉ có 8GB RAM, nhưng bạn được giao nhiệm vụ phải đọc và lọc dữ liệu từ một file log hệ thống khổng lồ nặng tới 20GB để tìm các dòng chứa mã lỗi "ERROR".
+
 Nếu bạn dùng cách đọc file thông thường (như hàm .readlines()), Python sẽ cố gắng tải toàn bộ 20GB dữ liệu đó vào RAM cùng một lúc, dẫn đến việc máy tính bị treo hoặc báo lỗi Out of Memory (Tràn bộ nhớ) ngay lập tức.
+
 Generator chính là "cứu tinh" tuyệt đối trong trường hợp này.
 
 ------------------------------
