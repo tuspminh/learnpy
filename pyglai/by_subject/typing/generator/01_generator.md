@@ -1,7 +1,9 @@
 Trong Python, Generator là một công cụ đặc biệt giúp bạn tạo ra một chuỗi dữ liệu (iterable) một cách tối ưu và tiết kiệm bộ nhớ nhất.
 
 Thay vì tạo ra toàn bộ danh sách và lưu tất cả phần tử vào bộ nhớ RAM cùng một lúc (như cách list hoạt động), Generator chỉ tạo ra từng phần tử một tại thời điểm bạn cần đến nó (theo cơ chế gọi là Lazy Evaluation - Đánh giá lười biếng).
+
 ------------------------------
+
 ## 1. Từ khóa cốt lõi: yield là gì?
 
 Để tạo ra một Generator, bạn viết một hàm bình thường nhưng thay vì dùng từ khóa return, bạn dùng từ khóa yield.
