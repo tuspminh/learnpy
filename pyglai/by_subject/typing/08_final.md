@@ -12,8 +12,11 @@ Hãy xem ví dụ dưới đây để hiểu rõ cơ chế này:
 from typing import Final
 
 
-# 1. Khai báo một danh sách hằng sốCAU_HINH_HE_THONG: Final[list[str]] = ["localhost", "db_prod"]
+# 1. Khai báo một danh sách hằng số
+CAU_HINH_HE_THONG: Final[list[str]] = ["localhost", "db_prod"]
+
 # ❌ LỖI GÁN LẠI (IDE/Mypy sẽ báo lỗi đỏ ngay lập tức)CAU_HINH_HE_THONG = ["127.0.0.1", "db_dev"] 
+
 # ⚠️ HÀNH VI MẶC ĐỊNH: Thêm phần tử thì Python vẫn cho phép chạy
 CAU_HINH_HE_THONG.append("redis_cache") 
 ```
@@ -31,7 +34,10 @@ from typing import Final
 
 
 # Một danh sách mã lỗi cố định không thể sửa đổiMA_LOI_DON_HANG: Final[tuple[int, ...]] = (404, 500, 403)
-# ❌ IDE và Python đều sẽ báo lỗi nếu bạn cố tình sửa:# MA_LOI_DON_HANG = (200,) --> Lỗi gán lại (do Final)# MA_LOI_DON_HANG.append(200) --> Lỗi không có hàm append (do tuple)
+
+# ❌ IDE và Python đều sẽ báo lỗi nếu bạn cố tình sửa:
+# MA_LOI_DON_HANG = (200,) --> Lỗi gán lại (do Final)
+# MA_LOI_DON_HANG.append(200) --> Lỗi không có hàm append (do tuple)
 ```
 
 ## Cách 2: Sử dụng Sequence để chỉ cho phép đọc (Read-only)
@@ -42,7 +48,8 @@ from typing import Final
 from collections.abc import Sequence
 
 
-# Sequence giúp biến này trở thành dữ liệu chỉ đọc (Read-only)DANH_SACH_KHOA: Final[Sequence[str]] = ["ID", "Name", "Age"]
+# Sequence giúp biến này trở thành dữ liệu chỉ đọc (Read-only)
+DANH_SACH_KHOA: Final[Sequence[str]] = ["ID", "Name", "Age"]
 # DANH_SACH_KHOA.append("Gender") -> IDE sẽ báo lỗi ngay vì Sequence không hỗ trợ append
 ```
 
