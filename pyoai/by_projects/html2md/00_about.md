@@ -1,3 +1,5 @@
+> bạn là lập trình viên python chuyên nghiệp, hay giúp tôi làm app sau: tôi muốn chọn một đoạn văn bản trên trình duyệt web, copy. tôi muôn có một app bắt lấy lệnh copy này, lấy nội dung html trong clipboard ra, cắt bỏ meta của windows, dùng beautifullsoup loại bỏ quảng cáo, các tag rác. dùng html2text chuyên thành markdown, tập trung giữ các đoạn code, pre, code block, code inline,.  xử lý xong thi update lại clipboard, ui dùng flet, có một nut bật tắt chế độ làm việc, luôn hiện trên màn hinh
+
 Được. Bài toán này rất phù hợp để làm thành một **Windows desktop utility chạy nền**, Flet chỉ đảm nhiệm UI, còn phần bắt clipboard và xử lý HTML là một core service độc lập.
 
 Mình đề xuất không làm tất cả trong `main.py`, mà xây theo kiến trúc có thể mở rộng thành một app hoàn chỉnh.
