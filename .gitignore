@@ -13,3 +13,4 @@ wheels/
 # Added by cargo
 
 /target
+output/
