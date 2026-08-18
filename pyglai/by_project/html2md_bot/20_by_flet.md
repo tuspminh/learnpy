@@ -1,3 +1,8 @@
+by Flet
+> khong chay, 
+> nen dung pywin32
+>
+
 Hoàn toàn được. Bạn có thể chuyển sang sử dụng [Flet](https://flet.dev/) để tạo giao diện.
 
 Flet quản lý Clipboard hệ thống thông qua `page.set_clipboard()` và `page.get_clipboard()`. Tuy nhiên, vì Flet không hỗ trợ sự kiện lắng nghe Clipboard thay đổi theo thời gian thực (như `dataChanged` của Qt), chúng ta cần sử dụng một luồng chạy ngầm (`threading`) để liên tục kiểm tra (poll) dữ liệu mới từ Clipboard sau mỗi 100ms.
