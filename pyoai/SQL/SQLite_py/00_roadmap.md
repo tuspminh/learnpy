@@ -193,6 +193,20 @@ ROLLBACK
 
 **Buổi 28. SQLite Performance**
 
+```
+Phần IV — SQLite Deep Dive
+
+```text id="p4x7m1"
+24 SQLite Type Affinity
+25 Constraints Deep Dive
+26 PRAGMA
+27 Transaction Deep Dive
+28 WAL
+29 Locking & Concurrency
+30 SQLite Performance
+```
+
+
 ---
 
 # Phần V — Index & Query Optimization
@@ -208,6 +222,26 @@ ROLLBACK
 **Buổi 33. EXPLAIN QUERY PLAN**
 
 **Buổi 34. Query Optimization**
+
+```
+PART V — Index & Query Optimization
+
+31. Index Fundamentals
+32. B-Tree & SQLite Index Internals
+33. Composite Index Deep Dive
+34. Covering Index
+35. Partial Index
+36. Expression Index
+37. Index + LIKE
+38. Index + JOIN
+39. Index + ORDER BY
+40. EXPLAIN QUERY PLAN Deep Dive
+41. Query Planner
+42. ANALYZE & Statistics
+43. N+1 Query
+44. Keyset Pagination
+45. Query Optimization thực chiến
+```
 
 ---
 
