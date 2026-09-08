@@ -659,7 +659,6 @@ Ta có thể viết:
 
 ```python id="v4n8q2"
 class NovelRepository:
-
     def __init__(self, conn):
         self._conn = conn
 
@@ -1148,8 +1147,7 @@ tags
 Viết:
 
 ```python id="c7m3x8"
-def has_chapters(self, novel_id: int) -> bool:
-    ...
+def has_chapters(self, novel_id: int) -> bool: ...
 ```
 
 Yêu cầu SQL sử dụng:
