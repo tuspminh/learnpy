@@ -245,6 +245,10 @@ Ví dụ:
 
 ```python
 class NovelRepository:
+<<<<<<< HEAD
+=======
+
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
     def __init__(self, conn):
         self._conn = conn
 
@@ -849,6 +853,10 @@ Một Repository tốt có thể có:
 
 ```python
 class NovelRepository:
+<<<<<<< HEAD
+=======
+
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
     def __init__(self, conn):
         self._conn = conn
 
@@ -996,7 +1004,12 @@ LEFT JOIN chapters c
 Viết:
 
 ```python
+<<<<<<< HEAD
 def list_novels_with_chapter_count(self): ...
+=======
+def list_novels_with_chapter_count(self):
+    ...
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 ```
 
 Trả về:
@@ -1011,7 +1024,12 @@ chapter_count
 và:
 
 ```python
+<<<<<<< HEAD
 def list_novels_without_chapters(self): ...
+=======
+def list_novels_without_chapters(self):
+    ...
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 ```
 
 ---

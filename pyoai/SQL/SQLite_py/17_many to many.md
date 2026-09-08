@@ -333,7 +333,13 @@ import sqlite3
 conn = sqlite3.connect(":memory:")
 conn.row_factory = sqlite3.Row
 
+<<<<<<< HEAD
 conn.execute("PRAGMA foreign_keys = ON")
+=======
+conn.execute(
+    "PRAGMA foreign_keys = ON"
+)
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 ```
 
 Tạo schema:
@@ -775,6 +781,10 @@ Ví dụ:
 
 ```python
 class NovelTagRepository:
+<<<<<<< HEAD
+=======
+
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
     def __init__(
         self,
         conn: sqlite3.Connection,

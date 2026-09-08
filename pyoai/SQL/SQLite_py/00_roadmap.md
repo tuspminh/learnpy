@@ -208,6 +208,18 @@ Phần IV — SQLite Deep Dive
 
 
 ---
+>Phần IV — SQLite Deep Dive
+
+```text id="p4x7m1"
+24 SQLite Type Affinity
+25 Constraints Deep Dive
+26 PRAGMA
+27 Transaction Deep Dive
+28 WAL
+29 Locking & Concurrency
+30 SQLite Performance
+```
+---
 
 # Phần V — Index & Query Optimization
 

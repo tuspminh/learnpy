@@ -738,6 +738,10 @@ Chapter count: 1200
 
 ```python
 class ChapterRepository:
+<<<<<<< HEAD
+=======
+
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
     def __init__(self, conn: sqlite3.Connection):
         self._conn = conn
 

@@ -197,7 +197,14 @@ conn.execute("""
     )
 """)
 
+<<<<<<< HEAD
 conn.execute("INSERT INTO test(value) VALUES (?)", ("123",))
+=======
+conn.execute(
+    "INSERT INTO test(value) VALUES (?)",
+    ("123",)
+)
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 
 row = conn.execute("""
     SELECT value, typeof(value)
@@ -477,7 +484,14 @@ Ví dụ Python:
 ```python
 data = b"\x01\x02\x03\x04"
 
+<<<<<<< HEAD
 conn.execute("INSERT INTO test(value) VALUES (?)", (data,))
+=======
+conn.execute(
+    "INSERT INTO test(value) VALUES (?)",
+    (data,)
+)
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 ```
 
 ---
@@ -1083,7 +1097,14 @@ SQLite → Python
 Ví dụ:
 
 ```python
+<<<<<<< HEAD
 conn.execute("INSERT INTO chapters(chapter_number) VALUES (?)", (100,))
+=======
+conn.execute(
+    "INSERT INTO chapters(chapter_number) VALUES (?)",
+    (100,)
+)
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 ```
 
 Python:
@@ -1150,6 +1171,7 @@ conn.execute("""
     )
 """)
 
+<<<<<<< HEAD
 conn.execute(
     """
     INSERT INTO test VALUES (?, ?, ?, ?, ?)
@@ -1162,6 +1184,17 @@ conn.execute(
         b"hello",
     ),
 )
+=======
+conn.execute("""
+    INSERT INTO test VALUES (?, ?, ?, ?, ?)
+""", (
+    "123",
+    123,
+    "12.5",
+    "100",
+    b"hello",
+))
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 
 row = conn.execute("""
     SELECT

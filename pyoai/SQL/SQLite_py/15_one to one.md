@@ -661,6 +661,10 @@ Ví dụ:
 
 ```python
 class NovelMetadataRepository:
+<<<<<<< HEAD
+=======
+
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
     def __init__(self, conn: sqlite3.Connection):
         self._conn = conn
 
@@ -880,7 +884,13 @@ Hãy ghi nhớ quy tắc này.
 SQLite cho phép xem foreign key:
 
 ```python
+<<<<<<< HEAD
 rows = conn.execute("PRAGMA foreign_key_list(novel_metadata)").fetchall()
+=======
+rows = conn.execute(
+    "PRAGMA foreign_key_list(novel_metadata)"
+).fetchall()
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 
 for row in rows:
     print(dict(row))
@@ -889,7 +899,13 @@ for row in rows:
 Kiểm tra foreign key:
 
 ```python
+<<<<<<< HEAD
 conn.execute("PRAGMA foreign_keys").fetchone()
+=======
+conn.execute(
+    "PRAGMA foreign_keys"
+).fetchone()
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 ```
 
 Phải là:
@@ -953,7 +969,13 @@ conn.execute(
 Lấy ID:
 
 ```python
+<<<<<<< HEAD
 novel_id = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
+=======
+novel_id = conn.execute(
+    "SELECT last_insert_rowid()"
+).fetchone()[0]
+>>>>>>> a2efe0f3f956d1c15c851e4a1c1f5d840df958a4
 ```
 
 Insert metadata:
