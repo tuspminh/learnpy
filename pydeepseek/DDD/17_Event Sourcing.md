@@ -1116,5 +1116,330 @@ class Product(EventSourcedAggregate): ...
 class Category(EventSourcedAggregate): ...
 ```
 
-**Fix:** Chỉ Event-Sourced
-còn nữa.....
+**Fix:** Chỉ Event-Sourced khi **thực sự cần audit** (Bank account, Order, Invoice). Category có thể dùng CRUD.
+
+---
+
+## 9. Ví dụ tổng hợp: Bank Account với Event Sourcing
+
+### 9.1. Domain Events
+
+```python
+# domain/events/account_events.py
+@dataclass(frozen=True)
+class DomainEvent:
+    event_id: UUID = field(default_factory=uuid4)
+    occurred_at: datetime = field(default_factory=datetime.now)
+
+
+@dataclass(frozen=True)
+class AccountOpened(DomainEvent):
+    account_id: UUID = field(default=None)   # type: ignore
+    owner_name: str = ""
+
+
+@dataclass(frozen=True)
+class MoneyDeposited(DomainEvent):
+    account_id: UUID = field(default=None)   # type: ignore
+    amount: Money = field(default=None)   # type: ignore
+
+
+@dataclass(frozen=True)
+class MoneyWithdrawn(DomainEvent):
+    account_id: UUID = field(default=None)   # type: ignore
+    amount: Money = field(default=None)   # type: ignore
+
+
+@dataclass(frozen=True)
+class AccountFrozen(DomainEvent):
+    account_id: UUID = field(default=None)   # type: ignore
+    reason: str = ""
+```
+
+### 9.2. Aggregate
+
+Đã có ở trên.
+
+### 9.3. Event Store
+
+Đã có ở trên (in-memory + SQLAlchemy).
+
+### 9.4. Repository
+
+Đã có ở trên (có snapshot).
+
+### 9.5. Application Service
+
+```python
+class OpenAccountHandler:
+    def __init__(
+        self,
+        event_store: EventStore,
+        uow: UnitOfWork,
+    ) -> None:
+        self._event_store = event_store
+        self._uow = uow
+
+    def handle(self, cmd: OpenAccountCommand) -> UUID:
+        with self._uow:
+            account = BankAccount.open(cmd.owner_name)
+            repo = EventSourcedBankAccountRepository(self._event_store)
+            repo.save(account)
+            self._uow.commit()
+        return account.id
+
+
+class DepositHandler:
+    def __init__(
+        self,
+        event_store: EventStore,
+        uow: UnitOfWork,
+    ) -> None:
+        self._event_store = event_store
+        self._uow = uow
+
+    def handle(self, cmd: DepositCommand) -> None:
+        with self._uow:
+            repo = EventSourcedBankAccountRepository(self._event_store)
+            account = repo.find_by_id(cmd.account_id)
+            if not account:
+                raise AccountNotFound(cmd.account_id)
+
+            account.deposit(Money(Decimal(cmd.amount), "VND"))
+
+            repo.save(account)
+            self._uow.commit()
+```
+
+### 9.6. Projection
+
+Đã có ở trên.
+
+### 9.7. Query
+
+Đã có ở trên.
+
+### 9.8. Composition Root
+
+```python
+def build_container(db_url: str) -> dict:
+    engine = create_engine(db_url)
+    session_factory = sessionmaker(bind=engine)
+
+    def make_event_store():
+        return SqlAlchemyEventStore(session_factory())
+
+    def make_uow():
+        return SqlAlchemyUnitOfWork(session_factory, ...)
+
+    return {
+        "open_account_handler": lambda: OpenAccountHandler(
+            event_store=make_event_store(),
+            uow=make_uow(),
+        ),
+        "deposit_handler": lambda: DepositHandler(
+            event_store=make_event_store(),
+            uow=make_uow(),
+        ),
+    }
+```
+
+### 9.9. Test
+
+```python
+def test_deposit_increases_balance():
+    # Arrange
+    event_store = InMemoryEventStore()
+    account = BankAccount.open("An")
+    repo = EventSourcedBankAccountRepository(event_store)
+    repo.save(account)
+
+    # Act
+    loaded = repo.find_by_id(account.id)
+    loaded.deposit(Money(Decimal("1000000"), "VND"))
+    repo.save(loaded)
+
+    # Assert
+    final = repo.find_by_id(account.id)
+    assert final.balance == Money(Decimal("1000000"), "VND")
+    assert final.version == 2
+
+
+def test_concurrent_modification_raises():
+    # Arrange
+    event_store = InMemoryEventStore()
+    account = BankAccount.open("An")
+    repo = EventSourcedBankAccountRepository(event_store)
+    repo.save(account)
+
+    # Simulate concurrent modification
+    a1 = repo.find_by_id(account.id)
+    a2 = repo.find_by_id(account.id)
+
+    a1.deposit(Money(Decimal("100"), "VND"))
+    repo.save(a1)   # OK, version 1 → 2
+
+    a2.deposit(Money(Decimal("200"), "VND"))
+    with pytest.raises(ConcurrencyError):
+        repo.save(a2)   # FAIL, version 1 → 2 đã tồn tại
+```
+
+---
+
+## 10. Bài tập về nhà
+
+### 🟢 Bài tập 1 (dễ): Event-Sourced Order
+
+Viết Aggregate `Order` theo Event Sourcing:
+
+- Events: `OrderCreated`, `LineAdded`, `LineRemoved`, `OrderPlaced`, `OrderShipped`, `OrderCancelled`.
+- Business methods: `create`, `add_line`, `remove_line`, `place`, `ship`, `cancel`.
+- Invariants:
+  - Max 100 lines.
+  - Không sửa khi đã placed.
+  - Không rỗng khi placed.
+
+Viết:
+- Domain events.
+- Aggregate với `_on_EventName`.
+- In-memory Event Store.
+- Repository.
+- ít nhất 12 test.
+
+### 🟡 Bài tập 2 (trung bình): Snapshot + Projection
+
+Cho BankAccount ở trên, thêm:
+
+1. **Snapshot:**
+   - Snapshot mỗi 5 events.
+   - `from_snapshot` reconstruct từ snapshot.
+   - Repository load từ snapshot + events sau.
+
+2. **Projection:**
+   - `AccountSummaryProjection` update read model.
+   - `AccountTransactionHistoryProjection` update list giao dịch.
+   - Query đọc từ read model.
+
+3. Test:
+   - Snapshot giảm số events cần replay.
+   - Projection update đúng.
+   - Rebuild read model từ events.
+
+Viết ít nhất 15 test.
+
+### 🔴 Bài tập 3 (khó): Full Event-Sourced System
+
+Cho hệ thống "ví điện tử":
+
+**Aggregates:**
+
+- `Wallet` (Event Sourced).
+- `Transaction` (Event Sourced).
+
+**Events:**
+
+- `WalletCreated`, `MoneyToppedUp`, `MoneyWithdrawn`, `MoneyTransferred`, `WalletFrozen`.
+- `TransactionInitiated`, `TransactionCompleted`, `TransactionFailed`.
+
+**Yêu cầu:**
+
+1. Event Store (in-memory + SQLAlchemy).
+2. Snapshot cho Wallet.
+3. Projection:
+   - `WalletSummary` (balance, status).
+   - `TransactionHistory` (list giao dịch).
+   - `DailyTransferReport` (tổng chuyển tiền theo ngày).
+4. Query cho mỗi read model.
+5. Concurrency control.
+6. **Rebuild tất cả projections từ events.**
+7. Test:
+   - Happy path: top-up, withdraw, transfer.
+   - Concurrency: 2 transfer cùng lúc.
+   - Snapshot: aggregate có >100 events.
+   - Projection: rebuild từ events.
+   - Versioning: thêm field mới vào event.
+8. **Báo cáo hiệu suất:**
+   - Replay 1000 events không snapshot vs có snapshot.
+   - Rebuild projection: bao lâu?
+
+Viết ít nhất 25 test.
+
+Bonus: Đọc về **Marten** (Event Store cho .NET) và **EventStoreDB** để hiểu thêm.
+
+---
+
+## 11. Checklist sau bài 17
+
+Trước khi sang bài 18, bạn phải tự tin trả lời:
+
+- [ ] Event Sourcing là gì?
+- [ ] Khác Event-Driven và Event Notification chỗ nào?
+- [ ] Khi nào nên dùng Event Sourcing?
+- [ ] Khi nào KHÔNG nên dùng?
+- [ ] Event Store có API gì?
+- [ ] Optimistic concurrency hoạt động thế nào?
+- [ ] Event-Sourced Aggregate khác gì Aggregate thường?
+- [ ] `from_history` vs `from_snapshot`?
+- [ ] Replay là gì?
+- [ ] Snapshot là gì? Khi nào dùng?
+- [ ] Projection là gì? Tại sao cần?
+- [ ] Rebuild projection như thế nào?
+- [ ] Versioning events — các strategy?
+- [ ] 8 anti-pattern khi dùng Event Sourcing?
+
+Nếu trả lời được hết, bạn đã sẵn sàng bài 18.
+
+---
+
+## 12. Tóm tắt bài 17
+
+| Điểm | Nội dung |
+|---|---|
+| **Event Sourcing** | Lưu toàn bộ events, replay để có state |
+| **Khác Event-Driven** | Event là source of truth, không phải DB |
+| **Khi nào dùng** | Audit, time travel, rebuild read model |
+| **Không dùng** | CRUD, không cần audit, team chưa có KN |
+| **Event Store** | Append-only, optimistic concurrency |
+| **Event-Sourced Aggregate** | `_raise` event, `_apply` update state |
+| **Replay** | Load events → reconstruct |
+| **Snapshot** | Lưu state tại version, giảm replay |
+| **Projection** | Event handler → read model |
+| **Rebuild** | Replay all events → rebuild read model |
+| **Versioning** | Default value, event version, upcaster |
+| **8 anti-pattern** | Dùng cho CRUD, event store = queue, sửa event, query event store, không snapshot, event chứa Entity, không versioning, mọi aggregate Event-Sourced |
+
+**Câu thần chú:** *"Không lưu state. Lưu sự kiện. State là hệ quả của sự kiện."*
+
+---
+
+## 13. Chuẩn bị cho bài 18
+
+Bài tiếp theo: **DDD + FastAPI + SQLAlchemy — Project hoàn chỉnh**.
+
+Đây là **bài cuối cùng** của lộ trình. Bạn sẽ:
+
+- Ghép **mọi thứ đã học** vào 1 project thực tế.
+- Từ Event Storming → Context Map → Code.
+- Full stack: Domain, Application, Infrastructure, Presentation.
+- CQRS + Event Sourcing + DI.
+- Production-ready.
+
+Chuẩn bị:
+
+- Đọc lại tất cả các bài (hoặc ít nhất skim).
+- Nghĩ về **1 domain** bạn muốn implement.
+- Cài sẵn: Python 3.11+, FastAPI, SQLAlchemy, pytest.
+
+Đây là bài **tổng kết** — bạn sẽ thấy mọi mảnh ghép khớp với nhau.
+
+---
+
+📌 **Bạn muốn tôi làm gì tiếp?**
+
+1. **Chấm bài tập** khi bạn viết xong.
+2. **Đi tiếp bài 18** (Project hoàn chỉnh) ngay — bài cuối cùng.
+3. **Viết code mẫu đầy đủ** cho một trong ba bài tập.
+4. **Đào sâu** một phần: Snapshot strategy, upcaster, projection rebuild, performance tuning.
+5. **Review code Event Sourcing** của bạn — nếu bạn gửi code, tôi sẽ chỉ ra anti-pattern và cách sửa.
+
+Nói tôi biết bạn muốn gì nhé.
